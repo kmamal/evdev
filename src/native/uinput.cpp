@@ -46,6 +46,14 @@ uinput::createDevice(const Napi::CallbackInfo &info)
 		libevdev_set_id_version(dev, version);
 	}
 
+	if (options.Has("props")) {
+		Napi::Array props = options.Get("props").As<Napi::Array>();
+		for (unsigned i = 0; i < props.Length(); i++) {
+			int prop = props.Get(i).As<Napi::Number>().Int32Value();
+			libevdev_enable_property(dev, prop);
+		}
+	}
+
 	if (options.Has("events")) {
 		Napi::Array events = options.Get("events").As<Napi::Array>();
 		for (unsigned i = 0; i < events.Length(); i++) {

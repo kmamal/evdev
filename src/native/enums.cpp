@@ -1,6 +1,7 @@
 #include "enums.h"
 extern "C" {
 	#include <linux/input-event-codes.h>
+	#include <linux/input.h>
 }
 
 
@@ -13,6 +14,77 @@ enums::get(const Napi::CallbackInfo &info)
 	Napi::Env env = info.Env();
 
 	Napi::Object result = Napi::Object::New(env);
+
+	result.Set("BUS_PCI", Napi::Number::New(env, BUS_PCI));
+	result.Set("BUS_ISAPNP", Napi::Number::New(env, BUS_ISAPNP));
+	result.Set("BUS_USB", Napi::Number::New(env, BUS_USB));
+	result.Set("BUS_HIL", Napi::Number::New(env, BUS_HIL));
+	result.Set("BUS_BLUETOOTH", Napi::Number::New(env, BUS_BLUETOOTH));
+	result.Set("BUS_VIRTUAL", Napi::Number::New(env, BUS_VIRTUAL));
+
+	result.Set("BUS_ISA", Napi::Number::New(env, BUS_ISA));
+	result.Set("BUS_I8042", Napi::Number::New(env, BUS_I8042));
+	result.Set("BUS_XTKBD", Napi::Number::New(env, BUS_XTKBD));
+	result.Set("BUS_RS232", Napi::Number::New(env, BUS_RS232));
+	result.Set("BUS_GAMEPORT", Napi::Number::New(env, BUS_GAMEPORT));
+	result.Set("BUS_PARPORT", Napi::Number::New(env, BUS_PARPORT));
+	result.Set("BUS_AMIGA", Napi::Number::New(env, BUS_AMIGA));
+	result.Set("BUS_ADB", Napi::Number::New(env, BUS_ADB));
+	result.Set("BUS_I2C", Napi::Number::New(env, BUS_I2C));
+	result.Set("BUS_HOST", Napi::Number::New(env, BUS_HOST));
+	result.Set("BUS_GSC", Napi::Number::New(env, BUS_GSC));
+	result.Set("BUS_ATARI", Napi::Number::New(env, BUS_ATARI));
+	result.Set("BUS_SPI", Napi::Number::New(env, BUS_SPI));
+	result.Set("BUS_RMI", Napi::Number::New(env, BUS_RMI));
+	result.Set("BUS_CEC", Napi::Number::New(env, BUS_CEC));
+	result.Set("BUS_INTEL_ISHTP", Napi::Number::New(env, BUS_INTEL_ISHTP));
+	result.Set("BUS_AMD_SFH", Napi::Number::New(env, BUS_AMD_SFH));
+
+	/*
+	* MT_TOOL types
+	*/
+	result.Set("MT_TOOL_FINGER", Napi::Number::New(env, MT_TOOL_FINGER));
+	result.Set("MT_TOOL_PEN", Napi::Number::New(env, MT_TOOL_PEN));
+	result.Set("MT_TOOL_PALM", Napi::Number::New(env, MT_TOOL_PALM));
+	result.Set("MT_TOOL_DIAL", Napi::Number::New(env, MT_TOOL_DIAL));
+
+	/*
+	* Values describing the status of a force-feedback effect
+	*/
+	result.Set("FF_STATUS_STOPPED", Napi::Number::New(env, FF_STATUS_STOPPED));
+	result.Set("FF_STATUS_PLAYING", Napi::Number::New(env, FF_STATUS_PLAYING));
+
+/*
+ * Force feedback effect types
+ */
+
+	result.Set("FF_RUMBLE", Napi::Number::New(env, FF_RUMBLE));
+	result.Set("FF_PERIODIC", Napi::Number::New(env, FF_PERIODIC));
+	result.Set("FF_CONSTANT", Napi::Number::New(env, FF_CONSTANT));
+	result.Set("FF_SPRING", Napi::Number::New(env, FF_SPRING));
+	result.Set("FF_FRICTION", Napi::Number::New(env, FF_FRICTION));
+	result.Set("FF_DAMPER", Napi::Number::New(env, FF_DAMPER));
+	result.Set("FF_INERTIA", Napi::Number::New(env, FF_INERTIA));
+	result.Set("FF_RAMP", Napi::Number::New(env, FF_RAMP));
+
+/*
+ * Force feedback periodic effect types
+ */
+
+	result.Set("FF_SQUARE", Napi::Number::New(env, FF_SQUARE));
+	result.Set("FF_TRIANGLE", Napi::Number::New(env, FF_TRIANGLE));
+	result.Set("FF_SINE", Napi::Number::New(env, FF_SINE));
+	result.Set("FF_SAW_UP", Napi::Number::New(env, FF_SAW_UP));
+	result.Set("FF_SAW_DOWN", Napi::Number::New(env, FF_SAW_DOWN));
+	result.Set("FF_CUSTOM", Napi::Number::New(env, FF_CUSTOM));
+
+/*
+ * Set ff device properties
+ */
+
+	result.Set("FF_GAIN", Napi::Number::New(env, FF_GAIN));
+	result.Set("FF_AUTOCENTER", Napi::Number::New(env, FF_AUTOCENTER));
+
 
 	/*
 	* Device properties and quirks
