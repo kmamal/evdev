@@ -5,3 +5,6 @@
 /build/
 /dist/
 /publish/
+/scripts/install-deps-ubuntu.sh
+/scripts/release.mjs
+/scripts/upload-release.mjs

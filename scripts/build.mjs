@@ -34,7 +34,19 @@ console.log("install to", C.dir.dist)
 await Fs.promises.rm(C.dir.dist, { recursive: true }).catch(() => {})
 await Fs.promises.mkdir(C.dir.dist, { recursive: true })
 
-await Fs.promises.copyFile(
-	Path.join(C.dir.build, 'Release/evdev.node'),
-	Path.join(C.dir.dist, 'evdev.node'),
-)
+await Promise.all([
+	Fs.promises.cp(
+		Path.join(C.dir.build, 'Release/evdev.node'),
+		Path.join(C.dir.dist, 'evdev.node'),
+	),
+	(async () => {
+		const libs = await Fs.promises.readdir(LIBEVDEV_LIB)
+		await Promise.all(libs.map(async (name) => {
+			await Fs.promises.cp(
+				Path.join(LIBEVDEV_LIB, name),
+				Path.join(C.dir.dist, name),
+				{ verbatimSymlinks: true },
+			)
+		}))
+	})(),
+])

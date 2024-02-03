@@ -5,6 +5,7 @@
 			'src/native/module.cpp',
 			'src/native/enums.cpp',
 			'src/native/global.cpp',
+			'src/native/uinput.cpp',
 		],
 		'dependencies': [
 			"<!(node -p \"require('node-addon-api').targets\"):node_addon_api_except",

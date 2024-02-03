@@ -1,4 +1,7 @@
 
+if (process.platform !== 'linux') { process.exit(0) }
+if (process.arch !== 'x64') { process.exit(0) }
+
 if (!process.env.NODE_EVDEV_FROM_SOURCE) {
 	try {
 		await import('./download-release.mjs')
