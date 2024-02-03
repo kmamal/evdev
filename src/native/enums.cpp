@@ -38,7 +38,7 @@ enums::get(const Napi::CallbackInfo &info)
 	result.Set("BUS_RMI", Napi::Number::New(env, BUS_RMI));
 	result.Set("BUS_CEC", Napi::Number::New(env, BUS_CEC));
 	result.Set("BUS_INTEL_ISHTP", Napi::Number::New(env, BUS_INTEL_ISHTP));
-	result.Set("BUS_AMD_SFH", Napi::Number::New(env, BUS_AMD_SFH));
+	// result.Set("BUS_AMD_SFH", Napi::Number::New(env, BUS_AMD_SFH));
 
 	/*
 	* MT_TOOL types
