@@ -9,6 +9,10 @@ class UinputDevice {
 		this._devnode = result.devnode
 	}
 
+	get fd () { return this._fd }
+	get syspath () { return this._syspath }
+	get devnode () { return this._devnode }
+
 	writeEvents (events) { Bindings.uinput_writeEvents(this._fd, events) }
 
 	destroy () { Bindings.uinput_destroyDevice(this._fd) }
