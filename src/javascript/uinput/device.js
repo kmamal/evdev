@@ -1,4 +1,6 @@
+const Globals = require('../globals')
 const Bindings = require('../bindings')
+
 
 class UinputDevice {
 	constructor (options) {
@@ -7,6 +9,8 @@ class UinputDevice {
 		this._fd = result.fd
 		this._syspath = result.syspath
 		this._devnode = result.devnode
+
+		Globals.uinputDevices.add(this)
 	}
 
 	get fd () { return this._fd }
@@ -15,7 +19,11 @@ class UinputDevice {
 
 	writeEvents (events) { Bindings.uinput_writeEvents(this._fd, events) }
 
-	destroy () { Bindings.uinput_destroyDevice(this._fd) }
+	destroy () {
+		Bindings.uinput_destroyDevice(this._fd)
+
+		Globals.uinputDevices.delete(this)
+	}
 }
 
 module.exports = { UinputDevice }

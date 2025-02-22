@@ -5,7 +5,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/kmamal/evdev.git"
+    "url": "git+ssh://github.com/kmamal/evdev.git"
   },
   "main": "./src/javascript/index.js",
   "gypfile": true,
@@ -20,7 +20,9 @@
     "clean": "cd scripts && node clean.mjs"
   },
   "dependencies": {
-    "tar": "^6.2.0"
+    "node-addon-api": "^8.3.1",
+    "node-gyp": "^11.1.0",
+    "tar": "^7.4.3"
   },
   "libevdev": {
     "owner": "kmamal",
@@ -28,7 +30,6 @@
     "version": "1.13.1"
   },
   "devDependencies": {
-    "node-addon-api": "^7.1.0",
-    "node-gyp": "^10.0.1"
+    "@kmamal/testing": "^0.0.31"
   }
 }

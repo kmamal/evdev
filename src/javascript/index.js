@@ -7,7 +7,7 @@ try {
 
 	const info = Bindings.global_initialize()
 
-	const uinput = require('./uinput')
+	const { uinput } = require('./uinput')
 
 	require('./cleanup')
 
