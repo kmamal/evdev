@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - run: ./scripts/install-deps-ubuntu.sh
+      - run: sudo apt-get update && sudo ./scripts/install-deps-ubuntu.sh
 
       - env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

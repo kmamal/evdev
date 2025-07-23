@@ -1,10 +1,9 @@
 /.github/
-/tests/
-/examples/
 /libevdev/
 /build/
 /dist/
 /publish/
+/scripts/clean.mjs
 /scripts/install-deps-ubuntu.sh
 /scripts/release.mjs
 /scripts/upload-release.mjs

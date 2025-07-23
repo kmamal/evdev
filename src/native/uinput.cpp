@@ -71,10 +71,15 @@ uinput::createDevice(const Napi::CallbackInfo &info)
 					int code = abs.Get("code").As<Napi::Number>().Int32Value();
 					int min = abs.Get("min").As<Napi::Number>().Int32Value();
 					int max = abs.Get("max").As<Napi::Number>().Int32Value();
-					struct input_absinfo min_max = {};
-					min_max.minimum = min;
-					min_max.maximum = max;
-					libevdev_enable_event_code(dev, type, code, &min_max);
+					Napi::Value _resolution = abs.Get("resolution");
+					int resolution = _resolution.IsNumber()
+						? _resolution.As<Napi::Number>().Int32Value()
+						: 0;
+					struct input_absinfo absinfo = {};
+					absinfo.minimum = min;
+					absinfo.maximum = max;
+					absinfo.resolution = resolution;
+					libevdev_enable_event_code(dev, type, code, &absinfo);
 				}
 			}
 		}
