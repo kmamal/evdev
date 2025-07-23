@@ -1,5 +1,5 @@
 {
-  "version": "0.0.3",
+  "version": "0.0.4",
   "name": "@kmamal/evdev",
   "description": "libevdev bindings for Node.js",
   "license": "MIT",
