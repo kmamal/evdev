@@ -59,14 +59,32 @@ uinput::createDevice(const Napi::CallbackInfo &info)
 		for (unsigned i = 0; i < events.Length(); i++) {
 			Napi::Object event = events.Get(i).As<Napi::Object>();
 			int type = event.Get("type").As<Napi::Number>().Int32Value();
-			libevdev_enable_event_type(dev, type);
 
-			Napi::Array codes = event.Get("codes").As<Napi::Array>();
-			for (unsigned j = 0; j < events.Length(); j++) {
-				if (type != EV_ABS) {
+			err = libevdev_enable_event_type(dev, type);
+			if (err != 0) {
+					std::ostringstream message;
+					message << "libevdev_enable_event_code (errno " << -err << ") error: " << strerror(-err);
+					err = 0;
+					throw Napi::Error::New(env, message.str());
+			}
+
+			if (type != EV_ABS) {
+				Napi::Array codes = event.Get("codes").As<Napi::Array>();
+				for (unsigned j = 0; j < codes.Length(); j++) {
 					int code = codes.Get(j).As<Napi::Number>().Int32Value();
-					libevdev_enable_event_code(dev, type, code, NULL);
-				} else {
+
+					err = libevdev_enable_event_code(dev, type, code, NULL);
+					if (err != 0) {
+							std::ostringstream message;
+							message << "libevdev_enable_event_code (errno " << -err << ") error: " << strerror(-err);
+							err = 0;
+							throw Napi::Error::New(env, message.str());
+					}
+				}
+			}
+			else {
+				Napi::Array codes = event.Get("codes").As<Napi::Array>();
+				for (unsigned j = 0; j < codes.Length(); j++) {
 					Napi::Object abs = codes.Get(j).As<Napi::Object>();
 
 					int code = abs.Get("code").As<Napi::Number>().Int32Value();
@@ -78,7 +96,13 @@ uinput::createDevice(const Napi::CallbackInfo &info)
 						absinfo.resolution = abs.Get("resolution").As<Napi::Number>().Int32Value();
 					}
 
-					libevdev_enable_event_code(dev, type, code, &absinfo);
+					err = libevdev_enable_event_code(dev, type, code, &absinfo);
+					if (err != 0) {
+							std::ostringstream message;
+							message << "libevdev_enable_event_code (errno " << -err << ") error: " << strerror(-err);
+							err = 0;
+							throw Napi::Error::New(env, message.str());
+					}
 				}
 			}
 		}
