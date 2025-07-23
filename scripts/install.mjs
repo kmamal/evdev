@@ -6,10 +6,12 @@ if (!process.env.NODE_EVDEV_FROM_SOURCE) {
 	try {
 		await import('./download-release.mjs')
 		process.exit(0)
-	} catch (error) {
+	}
+	catch (_) {
 		console.log("failed to download release")
 	}
-} else {
+}
+else {
 	console.log("skip download and build from source")
 }
 
