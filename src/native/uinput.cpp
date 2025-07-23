@@ -72,9 +72,9 @@ uinput::createDevice(const Napi::CallbackInfo &info)
 					int code = abs.Get("code").As<Napi::Number>().Int32Value();
 
 					struct input_absinfo absinfo = {};
-					absinfo.minimum min = abs.Get("min").As<Napi::Number>().Int32Value();
+					absinfo.minimum = abs.Get("min").As<Napi::Number>().Int32Value();
 					absinfo.maximum = abs.Get("max").As<Napi::Number>().Int32Value();
-					if (abs.Has("resolution")()) {
+					if (abs.Has("resolution")) {
 						absinfo.resolution = abs.Get("resolution").As<Napi::Number>().Int32Value();
 					}
 
