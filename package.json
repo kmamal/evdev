@@ -2,13 +2,11 @@
   "version": "0.0.6",
   "name": "@kmamal/evdev",
   "description": "libevdev bindings for Node.js",
-  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+ssh://github.com/kmamal/evdev.git"
+    "url": "git+ssh://git@github.com:kmamal/evdev.git"
   },
-  "main": "./src/javascript/index.js",
-  "gypfile": true,
+  "license": "MIT",
   "scripts": {
     "test": "npx @kmamal/testing",
     "install": "cd scripts && node install.mjs",
@@ -20,16 +18,18 @@
     "clean": "cd scripts && node clean.mjs"
   },
   "dependencies": {
-    "node-addon-api": "^8.3.1",
-    "node-gyp": "^11.1.0",
-    "tar": "^7.4.3"
+    "node-addon-api": "8.3.1",
+    "node-gyp": "11.1.0",
+    "tar": "7.4.3"
   },
+  "devDependencies": {
+    "@kmamal/testing": "0.0.31"
+  },
+  "gypfile": true,
   "libevdev": {
     "owner": "kmamal",
     "repo": "build-libevdev",
     "version": "1.13.1"
   },
-  "devDependencies": {
-    "@kmamal/testing": "^0.0.31"
-  }
+  "main": "./src/javascript/index.js"
 }
