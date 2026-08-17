@@ -1,9 +1,7 @@
 const Globals = require('./globals')
 const Bindings = require('./bindings')
 
-process.on('exit', (code) => {
-	if (code !== 0) { return }
-
+process.on('exit', () => {
 	for (const device of Globals.uinputDevices) {
 		device.destroy()
 	}
