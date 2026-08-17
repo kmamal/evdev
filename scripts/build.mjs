@@ -39,6 +39,10 @@ await Promise.all([
 		Path.join(C.dir.build, 'Release/evdev.node'),
 		Path.join(C.dir.dist, 'evdev.node'),
 	),
+	Fs.promises.cp(
+		Path.join(C.dir.libevdev, 'COPYING'),
+		Path.join(C.dir.dist, 'COPYING.libevdev'),
+	),
 	(async () => {
 		const libs = await Fs.promises.readdir(LIBEVDEV_LIB)
 		await Promise.all(libs.map(async (name) => {
