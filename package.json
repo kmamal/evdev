@@ -7,6 +7,9 @@
     "url": "git+ssh://git@github.com:kmamal/evdev.git"
   },
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "npx @kmamal/testing",
     "install": "cd scripts && node install.mjs",
