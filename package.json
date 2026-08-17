@@ -29,7 +29,7 @@
   "libevdev": {
     "owner": "kmamal",
     "repo": "build-libevdev",
-    "version": "1.13.1"
+    "version": "1.13.6"
   },
   "main": "./src/javascript/index.js"
 }
