@@ -24,9 +24,9 @@
     "tar": "7.5.22"
   },
   "devDependencies": {
-    "@kmamal/testing": "0.0.31",
-    "node-addon-api": "8.3.1",
-    "node-gyp": "11.1.0"
+    "@kmamal/testing": "0.0.33",
+    "node-addon-api": "8.9.2",
+    "node-gyp": "13.0.1"
   },
   "gypfile": true,
   "libevdev": {
