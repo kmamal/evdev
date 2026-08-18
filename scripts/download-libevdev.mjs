@@ -14,5 +14,5 @@ await Fs.promises.rm(C.dir.libevdev, { recursive: true }).catch(() => {})
 await Fs.promises.mkdir(C.dir.libevdev, { recursive: true })
 await Stream.promises.pipeline(
 	Stream.Readable.fromWeb(response.body),
-	Tar.extract({ gzip: true, C: C.dir.libevdev }),
+	Tar.extract({ preservePaths: true, gzip: true, C: C.dir.libevdev }),
 )
