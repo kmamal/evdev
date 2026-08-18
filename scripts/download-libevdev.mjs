@@ -1,7 +1,8 @@
 import Fs from 'node:fs'
+import Zlib from 'node:zlib'
 import Stream from 'node:stream'
 import C from './util/common.js'
-import * as Tar from 'tar'
+import { unpackTar } from 'modern-tar/fs'
 
 const url = `https://github.com/${C.libevdev.owner}/${C.libevdev.repo}/releases/download/v${C.libevdev.version}/${C.libevdev.assetName}`
 
@@ -14,5 +15,6 @@ await Fs.promises.rm(C.dir.libevdev, { recursive: true }).catch(() => {})
 await Fs.promises.mkdir(C.dir.libevdev, { recursive: true })
 await Stream.promises.pipeline(
 	Stream.Readable.fromWeb(response.body),
-	Tar.extract({ preservePaths: true, gzip: true, C: C.dir.libevdev }),
+	Zlib.createGunzip(),
+	unpackTar(C.dir.libevdev),
 )
